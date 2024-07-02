@@ -1,6 +1,7 @@
 # digitalController
 ## 前端
 cd frontend
+<br>
 npm install
 npm run dev
 
