@@ -1,5 +1,4 @@
 frontend/node_modules/
-test/
 backend/__pycache__/
 backend/.venv/
 .gitignore
