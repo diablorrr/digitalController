@@ -33,6 +33,8 @@ onMounted(() => {
 })
 </script>
 
+
+
 <template>
     <n-flex class="main"  vertical>
         <n-card class="chatFrame">
@@ -44,6 +46,8 @@ onMounted(() => {
         </n-flex>
     </n-flex>
 </template>
+
+
 
 <style scoped>
 .chatFrame {
