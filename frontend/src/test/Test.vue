@@ -7,26 +7,29 @@ const log = ref('sfsldfj')
 const logInst = ref<LogInst|null>(null)
 
 function getlog_do(){
-     log.vaule = ''
+     console.log(123)
+     log.value = ''
      const source = new EventSource('/api/test/listen')
+     console.log(source)
      source.onopen = (e) => console.log('Connection opened')
      source.onerror = (e) => console.log('Error:',e)
      source.onmessage = (e) => {
+         console.log(e)
          if(e.data === '[DONE]') source.close()
          else log.value += e.data + '\n'
      }
  }
 
 function getLog(){
-     axiosInstance.get('/api/test/listen',{
+     axiosInstance.post('/api/test',{
      }).then((val)=>{
          console.log(val)
      }).catch((err)=>{
          console.log(err)
      })
-     setTimeout(function(){
-         getlog_do()
-     },1000)
+    // setTimeout(function(){
+    //     getlog_do()
+    // },1000)
  }
 
 
@@ -45,7 +48,8 @@ onMounted(()=>{
 
 <template>
     <n-log ref="logInst" :log="log" />
-    <n-button type='primary' @click="getLog">test</n-button>
+    <n-button type='primary' @click="getlog_do">listen</n-button>
+    <n-button type='primary' @click="getLog">create data</n-button>
 </template>
 
 <style scoped>
