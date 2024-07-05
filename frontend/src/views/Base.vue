@@ -17,26 +17,6 @@ function send(){
 }
 
 
- const message_from_test = ref('')
-function test(){
-     const source = new EventSource('/api/test')
-     source.onopen = (e) => console('connection opened')
-     source.onerror = (e) => console('conection failed')
-     // source.message = (e) =>
- }
-
-
- // function test(){
- //      axiosInstance.post('/api/test',{
- //          message:'hello world'
- //      }).then(function (response){
- //          console.log(response)
- //      }).catch(function(error){
- //          console.log(error)
- //      })
- //      message_from_test.value = ''
- //  }
-
 
 
 </script>
@@ -58,8 +38,6 @@ function test(){
     </n-flex>
 </n-flex>
 
-<n-button type="primary" @click='test'>test</n-button>
-<p>{{message_from_test}}</p>
 
 </div>
 </template>

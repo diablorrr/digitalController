@@ -10,8 +10,7 @@ class SSE:
     def announce(self,msg):
         self.listeners.put_nowait(msg)
 
-def formatSSE(data:str,event=None) -> str:
+# 对消息格式化，没json化？？
+def formatSSE(data:str) -> str:
     msg = f"data: {data}\n\n"
-    if event is not None:
-        msg = f"event: {event}\n{msg}"
     return msg

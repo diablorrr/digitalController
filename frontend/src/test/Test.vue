@@ -1,57 +1,61 @@
 <script setup lang='ts'>
-import {ref,watchEffect,onMounted,nextTick} from 'vue'
-import {NLog,LogInst,NButton} from 'naive-ui'
+import { ref, watchEffect, onMounted, nextTick } from 'vue'
+import { NLog, LogInst, NButton,NCard,NFlex,NInput } from 'naive-ui'
 import axiosInstance from '../axios/axiosInstance.ts'
 
-const log = ref('sfsldfj')
-const logInst = ref<LogInst|null>(null)
+const log = ref('')
+const logInst = ref<LogInst | null>(null)
+const fontSize = ref(25)
 
-function getlog_do(){
-     console.log(123)
-     log.value = ''
-     const source = new EventSource('/api/test/listen')
-     console.log(source)
-     source.onopen = (e) => console.log('Connection opened')
-     source.onerror = (e) => console.log('Error:',e)
-     source.onmessage = (e) => {
-         console.log(e)
-         if(e.data === '[DONE]') source.close()
-         else log.value += e.data + '\n'
-     }
- }
+function sendMessage() {
+    axiosInstance.post('/api/chat', {
+    }).then((val) => {
+        console.log(val)
+    }).catch((err) => {
+        console.log(err)
+    })
+}
 
-function getLog(){
-     axiosInstance.post('/api/test',{
-     }).then((val)=>{
-         console.log(val)
-     }).catch((err)=>{
-         console.log(err)
-     })
-    // setTimeout(function(){
-    //     getlog_do()
-    // },1000)
- }
-
-
-
-onMounted(()=>{
-     watchEffect(()=>{
-         if(log.value){
-             nextTick(()=>{
-               logInst.value?.scrollTo({position:'bottom',silent:true})
-             })
-         }
-     })
- })
-
+onMounted(() => {
+    console.log("mounted")
+    const source = new EventSource('/api/chat/listen')
+    source.onopen = (e) => console.log('Connection opened')
+    source.onmessage = (e) => {
+        log.value += e.data
+    }
+    watchEffect(() => {
+        if (log.value) {
+            nextTick(() => {
+                logInst.value?.scrollTo({ position: 'bottom', silent: true })
+            })
+        }
+    })
+})
 </script>
 
 <template>
-    <n-log ref="logInst" :log="log" />
-    <n-button type='primary' @click="getlog_do">listen</n-button>
-    <n-button type='primary' @click="getLog">create data</n-button>
+    <n-flex class="main"  vertical>
+        <n-card class="chatFrame">
+            <n-log ref="logInst" :log="log" :font-size="fontSize" />
+        </n-card>
+        <n-flex>
+            <n-input class="input" type="text" />
+            <n-button type='primary' @click="sendMessage">发送</n-button>
+        </n-flex>
+    </n-flex>
 </template>
 
 <style scoped>
+.chatFrame {
+    width: 60em;
+    height: 65em;
+}
 
+ .main {
+    width: 60em;
+}
+
+.input {
+    width: 55.2em
+}
 </style>
