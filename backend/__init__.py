@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from .module.createFrame import chatFrameBp
+from .module.chatFrame import chatFrameBp
 
 def create_app():
     app = Flask(__name__)

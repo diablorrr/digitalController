@@ -2,6 +2,8 @@
 import {NButton,NFlex,NInput,NCard} from 'naive-ui'
 import axiosInstance from '@/axios/axiosInstance'
 import {ref} from 'vue'
+import ChatFrame from '@/components/ChatFrame.vue'
+import Configuration from '@/components/Configuration.vue'
 
 const value = ref('')
 
@@ -22,24 +24,17 @@ function send(){
 </script>
 
 <template>
-<div>
-<n-flex class="base">
-    <n-flex class="left" vertical>
-        <n-button type="primary">连接大模型</n-button>
-        <n-button type="primary">连接UE5</n-button>
-        <n-card class="left_messageFrame" title="信息框"></n-card>
-    </n-flex>
-    <n-flex class="right" vertical>
-        <n-card class="right_chatFrame" title="聊天框"></n-card>
-        <n-flex class="right_down">
-            <n-input class="right_down_input" type="text" v-model:value="value"/>
-            <n-button type="primary" @click="send">发送</n-button>
+    <div>
+        <n-flex class="base">
+            <n-flex class="left" vertical>
+                <n-button type="primary">连接大模型</n-button>
+                <n-button type="primary">连接UE5</n-button>
+                <!-- <n-card class="left_messageFrame" title="信息框"></n-card> -->
+                <Configuration/>
+            </n-flex>
+            <ChatFrame />
         </n-flex>
-    </n-flex>
-</n-flex>
-
-
-</div>
+    </div>
 </template>
 
 <style scoped>
@@ -56,14 +51,4 @@ function send(){
     height: 62em;
 }
 
-.right{
-    width: 60em;
-}
-.right_chatFrame{
-    width:60em;
-    height: 65em;
-}
-.right_down_input{
-    width:55.2em
-}
 </style>
