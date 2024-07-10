@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { ref, watchEffect, onMounted, nextTick } from 'vue'
-import { NLog, LogInst, NButton,NCard,NFlex,NInput } from 'naive-ui'
-import axiosInstance from '../axios/axiosInstance.ts'
+import { NLog, LogInst, NButton,NCard,NFlex,NInput,NDivider } from 'naive-ui'
+import axiosInstance from '@/axios/axiosInstance.ts'
 
 const log = ref('')
 const logInst = ref<LogInst | null>(null)
@@ -36,12 +36,15 @@ onMounted(() => {
 
 
 <template>
-    <n-flex class="main"  vertical>
-        <n-card class="chatFrame" title='数字人对话框'>
+    <n-flex class="main" vertical>
+        <n-card class="chatFrame">
+            <n-divider title-placement="right" class='chatFrame_title'>
+                <n-card><span class="chatFrame_title_txt">虚拟数字人对话框</span></n-card>
+            </n-divider>
             <n-log ref="logInst" :log="log" :font-size="fontSize" />
         </n-card>
         <n-flex>
-            <n-input class="input" type="text" placeholder="请输入"/>
+            <n-input class="input" type="text" placeholder="请输入" />
             <n-button type='primary' @click="sendMessage">发送</n-button>
         </n-flex>
     </n-flex>
@@ -54,6 +57,17 @@ onMounted(() => {
     width: 60em;
     height: 65em;
    }
+
+.chatFrame_title {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.chatFrame_title_txt {
+    font-size: 1.5em;
+    color: green;
+    font-weight: 700;
+}
 
  .main {
     width: 60em;

@@ -29,7 +29,6 @@ function send(){
             <n-flex class="left" vertical>
                 <n-button type="primary">连接大模型</n-button>
                 <n-button type="primary">连接UE5</n-button>
-                <!-- <n-card class="left_messageFrame" title="信息框"></n-card> -->
                 <Configuration/>
             </n-flex>
             <ChatFrame />
