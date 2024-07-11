@@ -39,9 +39,9 @@ onMounted(() => {
     <n-flex class="main" vertical>
         <n-card class="chatFrame">
             <n-divider title-placement="right" class='chatFrame_title'>
-                <n-card><span class="chatFrame_title_txt">虚拟数字人对话框</span></n-card>
+                <n-card class='chatFrame_title_card'><span class="chatFrame_title_txt">虚拟数字人对话框</span></n-card>
             </n-divider>
-            <n-log ref="logInst" :log="log" :font-size="fontSize" />
+            <n-log ref="logInst" :log="log" :font-size="fontSize" :rows="5" />
         </n-card>
         <n-flex>
             <n-input class="input" type="text" placeholder="请输入" />

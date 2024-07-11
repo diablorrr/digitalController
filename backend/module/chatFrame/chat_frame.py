@@ -8,7 +8,7 @@ sse = SSE()
 
 @chatFrameBp.route('/api/chat',methods=['POST'])
 def test_sse():
-    for _ in range(100):
+    for _ in range(10000):
         sse.announce(formatSSE(str(random.randint(1,10))))
     print(sse.listeners.queue)
     return 'OK'
@@ -24,6 +24,6 @@ def test_listen():
         while True:
             msg = messages.get()
             print(msg)
-            time.sleep(1)
+            time.sleep(0.1)
             yield msg
     return Response(stream(),mimetype="text/event-stream")

@@ -2,7 +2,7 @@ from queue import Queue
 
 class SSE:
     def __init__(self):
-        self.listeners = Queue(maxsize=100)
+        self.listeners = Queue(maxsize=0)
 
     def listen(self):
         return self.listeners
