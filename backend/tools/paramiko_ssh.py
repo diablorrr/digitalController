@@ -27,8 +27,9 @@ class ParamikoSSH:
         try:
             while True:
                 if self.channel.recv_ready():
-                    output = self.channel.recv(1024).decode('utf-8')
-                    print(output,end="")
+                    output = self.channel.recv(4096).decode('utf-8')
+                    #print(output,end="")
+                    return output
                 time.sleep(sleep_time)
         except KeyboardInterrupt:
             print("用户键盘中断")
@@ -38,6 +39,8 @@ class ParamikoSSH:
             self.channel.close()
         if self.ssh:
             self.ssh.close()
+
+paramiko_instance = ParamikoSSH("connect.beijinga.seetacloud.com",46786,'root','peDyj80Rw6ih')
 
 # ssh -p 46786 root@connect.beijinga.seetacloud.com
 if __name__ == '__main__':
