@@ -28,7 +28,7 @@ class ParamikoSSH:
             while True:
                 if self.channel.recv_ready():
                     output = self.channel.recv(4096).decode('utf-8')
-                    #print(output,end="")
+                    print(output,end="")
                     return output
                 time.sleep(sleep_time)
         except KeyboardInterrupt:

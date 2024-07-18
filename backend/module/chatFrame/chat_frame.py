@@ -1,7 +1,8 @@
-from flask import Blueprint,Response
+from flask import Blueprint,Response,request
 from ...tools.sse import SSE,formatSSE
 import random,time
 from ...tools.paramiko_ssh import paramiko_instance
+
 
 chatFrameBp = Blueprint("Frame",__name__)
 
@@ -9,12 +10,13 @@ sse = SSE()
 
 @chatFrameBp.route('/api/chat',methods=['POST'])
 def test_sse():
-    
-    paramiko_instance.send_command('ls')
+    frontendMessage = request.get_json()['frontendMessage']
+    print(frontendMessage)
+    sse.announce(frontendMessage)
+    paramiko_instance.send_command(frontendMessage)
     time.sleep(1)
-    output = paramiko_instance.read_output()
-    print(output)
-    sse.announce(formatSSE(output))
+    output =  paramiko_instance.read_output()
+    sse.announce(output)
     return 'OK'
 
 

@@ -8,7 +8,10 @@ class SSE:
         return self.listeners
 
     def announce(self,msg):
-        self.listeners.put_nowait(msg)
+        msg_list = msg.splitlines()
+        for msg in msg_list:
+            msg = formatSSE(msg)
+            self.listeners.put(msg)
 
 # 对消息格式化，没json化？？
 def formatSSE(data:str) -> str:

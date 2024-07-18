@@ -45,7 +45,7 @@ function connect_llm(){
                 <n-button type="primary">连接UE5</n-button>
                 <Configuration/>
             </n-flex>
-            <ChatFrame />
+            <ChatFrame :jug_connect='c_llm' />
         </n-flex>
     </div>
 </template>
