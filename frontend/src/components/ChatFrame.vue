@@ -16,7 +16,6 @@ const disabled = computed(()=>{
 
 
 function sendMessage() {
-    input_value.value = null
     axiosInstance.post('/api/chat', {
         frontendMessage: input_value.value
     }).then((val) => {
@@ -24,6 +23,7 @@ function sendMessage() {
     }).catch((err) => {
         console.log(err)
     })
+    //input_value.value = null
 }
 
 onMounted(() => {
