@@ -48,6 +48,8 @@ function connect_llm(){
             <ChatFrame :jug_connect='c_llm' />
         </n-flex>
     </div>
+
+
 </template>
 
 <style scoped>
